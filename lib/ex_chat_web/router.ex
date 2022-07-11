@@ -8,6 +8,7 @@ defmodule ExChatWeb.Router do
     plug :put_root_layout, {ExChatWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ExChatWeb.Plugs.Locale, "rsa"
   end
 
   pipeline :api do
@@ -17,7 +18,13 @@ defmodule ExChatWeb.Router do
   scope "/", ExChatWeb do
     pipe_through :browser
 
+
     get "/", PageController, :index
+    live "/room", PageLive, :index
+    live "room/:id", RoomLive, :index
+    get "/me", MeController, :index
+    get "/me/:messenger", MeController, :show
+
   end
 
   # Other scopes may use custom stacks.

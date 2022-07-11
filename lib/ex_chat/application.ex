@@ -13,7 +13,9 @@ defmodule ExChat.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: ExChat.PubSub},
       # Start the Endpoint (http/https)
-      ExChatWeb.Endpoint
+      ExChatWeb.Endpoint,
+      # Start the Presence system
+      ExChatWeb.Presence
       # Start a worker by calling: ExChat.Worker.start_link(arg)
       # {ExChat.Worker, arg}
     ]
